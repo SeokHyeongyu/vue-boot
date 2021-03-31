@@ -4,7 +4,7 @@
 		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.vDao">
 
-	<select id="getData"  resultType="hashmap">
+	<select id="getData"  parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 	 SELECT 
 	 	A.CDNM,
@@ -54,30 +54,12 @@
 	 )A
 	  WHERE 1=1
 	 ]]>
-	 <if test = "keyword != null and keyword != ''" > 
-	<!-- 	 	
-		AND  A.OBJYKEY LIKE CONCAT('%',#{keyword}, '%')
-	 	 OR  A.NAME LIKE CONCAT('%',#{keyword}, '%')
-	 	<if test = "keyword == '보철물'" > 
-	 		<![CDATA[OR A.OBJTTY = 'PRST']]>
-	 	 </if>
-	 	 <if test = "keyword == '재료'" > 
-	 		 <![CDATA[OR A.OBJTTY = 'MAT']]>
-	 	 </if>
-	 	  <if test = "keyword == '대합치'" > 
-	 	 	 <![CDATA[OR A.OBJTTY = 'MATY']]>
-	 	 </if>
-	 	 <if test = "keyword == '폰틱'" > 
-	 	 	<![CDATA[OR A.OBJTTY = 'PNTC']]>
-	 	 </if> 
-	 	 -->
+	<if test = "keyWord != null and keyWord != ''" > 
+		AND  A.OBJYKEY LIKE CONCAT('%',#{keyWord}, '%')
+	 	 OR  A.NAME LIKE CONCAT('%',#{keyWord}, '%')
 	  </if>
-	 
-		
 	
 	</select>
-	
-
 
 
 
