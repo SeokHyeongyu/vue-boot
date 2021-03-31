@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTDMapper3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.vDao">
+
+	<select id="getData"  resultType="hashmap">
+		<![CDATA[
+	 SELECT 
+	 	A.CDNM,
+	 	A.OBJTTY,
+	 	A.OBJYKEY,
+	 	A.NAME,
+	 	A.COLRCD,
+	 	A.REGDT
+	 FROM(
+	 	 SELECT 
+		   FN_ST_CD_NM('OBJT_TY', TBO.OBJT_TY, 'ko') AS CDNM,
+		   TBO.OBJT_TY AS OBJTTY,
+		   TBO.OBJT_KEY AS OBJYKEY,
+		   TBI.ITEM_NM AS NAME,
+		   TBO.RGB_VAL AS COLRCD,
+		   DATE_FORMAT(TBO.REG_DT, '%Y-%m-%d %H:%i:00') AS REGDT
+		FROM TB_ST_CD TC
+		INNER JOIN TB_BI_OBJT_COLR TBO
+		ON TBO.OBJT_TY = TC.CD
+		INNER JOIN TB_BI_ITEM TBI
+		ON TBI.ITEM_CD = TBO.OBJT_KEY
+		UNION
+		SELECT 
+		   FN_ST_CD_NM('OBJT_TY', TBO.OBJT_TY, 'ko') AS CDNM,
+		   TBO.OBJT_TY AS OBJTTY,
+		   TBO.OBJT_KEY AS OBJYKEY,
+		   TBP.PART_NM AS NAME,
+		   TBO.RGB_VAL AS COLRCD,
+		   DATE_FORMAT(TBO.REG_DT, '%Y-%m-%d %H:%i:00') AS REGDT
+		FROM TB_ST_CD TC
+		INNER JOIN TB_BI_OBJT_COLR TBO
+		ON TBO.OBJT_TY = TC.CD
+		INNER JOIN TB_BI_PART TBP
+		ON TBP.PART_CD = TBO.OBJT_KEY
+		UNION
+		SELECT
+         FN_ST_CD_NM('OBJT_TY', TBO.OBJT_TY, 'ko') AS CDNM,
+         TBO.OBJT_TY AS OBJTTY,
+			TC.CD AS OBJYKEY,
+			TC.CD_NM AS NAME,
+			TBO.RGB_VAL AS COLRCD,
+			DATE_FORMAT(TBO.REG_DT, '%Y-%m-%d %H:%i:00') AS REGDT
+		FROM TB_ST_CD TC
+		INNER JOIN TB_BI_OBJT_COLR TBO
+		ON TBO.OBJT_KEY = TC.CD
+		WHERE CD_GRP IN('PNTC_TY','MATY_TY') 
+	 )A
+	  WHERE 1=1
+	 ]]>
+	 <if test = "keyword != null and keyword != ''" > 
+	<!-- 	 	
+		AND  A.OBJYKEY LIKE CONCAT('%',#{keyword}, '%')
+	 	 OR  A.NAME LIKE CONCAT('%',#{keyword}, '%')
+	 	<if test = "keyword == '보철물'" > 
+	 		<![CDATA[OR A.OBJTTY = 'PRST']]>
+	 	 </if>
+	 	 <if test = "keyword == '재료'" > 
+	 		 <![CDATA[OR A.OBJTTY = 'MAT']]>
+	 	 </if>
+	 	  <if test = "keyword == '대합치'" > 
+	 	 	 <![CDATA[OR A.OBJTTY = 'MATY']]>
+	 	 </if>
+	 	 <if test = "keyword == '폰틱'" > 
+	 	 	<![CDATA[OR A.OBJTTY = 'PNTC']]>
+	 	 </if> 
+	 	 -->
+	  </if>
+	 
+		
+	
+	</select>
+	
+
+
+
+
+</mapper>
