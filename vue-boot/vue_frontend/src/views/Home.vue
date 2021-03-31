@@ -1,10 +1,18 @@
 
 <template>
   <div>
-    <h1>{{title}}</h1>
-    <input type="text" v-model="input1" />
-    <button type="button" @click="getData">get</button>
-    <button type="button" @click="setData">set</button>
+    <h1  class="text-center">{{title}}</h1>
+    <div class="row">
+     
+        <div class="col-sm-9 col-xs-12">
+           <div class="form-inline text-middle">
+            <input  type="text" class="form-control" v-model="input1" />
+            <button type="button"  class="btn btn-success" @click="getData">조회</button>
+        <!--<button type="button" @click="setData">set</button> -->
+            </div>     
+        </div>
+   </div>
+
     <select class="form-control" v-model="region" @change="changeRegion">
         <option v-for="(item, index) in options" :key="index" :value="item.v">{{item.t}}</option>
     </select>
@@ -41,7 +49,7 @@ export default {
     data(){
         return{
             title : "",
-            input1 : "abc",
+            input1 : "",
             options :[
                 {v:"S", t:"Seoul"},
                 {v:"J", t:"Jeju"},
@@ -60,7 +68,13 @@ export default {
     },
     methods:{
         getData(){
-            alert(this.input1)
+        const pData = new URLSearchParams();
+        pData.append("keyWord", this.input1)
+        this.$http.post('/getData', pData)
+        .then((result) => {
+            console.log(result)
+            this.rowData = result.data
+        })
         },
         setData(){
             this.input1 = "1234"
@@ -75,11 +89,9 @@ export default {
     created(){
         this.$http.get('/getData')
         .then((result) => {
-            console.log(result)
             console.log(result.data)
-            console.log(result.data.rows)
-            this.title = "colorLisr"
-            this.rowData = result.data.rows
+            this.title = "List"
+            this.rowData = result.data
         })
 
         //console.log("created 시작과 동시에 동작 ex 디비에서 데이터를 미리 들고와서 바로 뿌려준다");
