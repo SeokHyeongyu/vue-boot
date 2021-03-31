@@ -1,1 +1,1 @@
-# vue-boot
+# vue / Spring-Boot 연동
