@@ -24,41 +24,39 @@
 </template>
 
 <script>
-import InfiniteLoading from "vue-infinite-loading";
+import InfiniteLoading from "vue-infinite-loading"; //vue-infinite-loading import
 export default {
     data(){
         return{
-          rowData:[],
-            limit : 0,
+          rowData:[], // 조회 데이터를 담을 배열
+            limit : 0, //limit 변수 생성 
         }
     },
   methods: {
-    infiniteHandler($state) {
-      this.$http.get("/getScorllPage/"+(this.limit+10))
+    infiniteHandler($state) { 
+      this.$http.get("/getScorllPage/"+(this.limit+10)) //url에 limit트 값에 10을 더하여 추가 데이터를 조회
         .then(result =>{
           setTimeout(()=>{
-            if(result.data.length){
-              this.rowData=this.rowData.concat(result.data);
+            if(result.data.length){ // 서버에서 전달받은 리스트의 길이확인
+              this.rowData=this.rowData.concat(result.data); // 기존 데이터에 이러 붙친다.
               $state.loaded();
-              this.limit+=10
-              if(this.rowData.length / 10 == 0){
-                $state.complete();
+              this.limit+=10 // limit값 추가
+              if(this.rowData.length / 10 == 0){ // 조회 데이터의 값이 확인
+                $state.complete(); // 값이 0이면 조회 종료
               }
             }else{
               $state.complete();
             }
-          }, 1000)
+          }, 1000) //1초에 한번 조회
         }).catch(error =>{
           console.error(error);
         })
     }
   },
-  created(){
+  created(){ // 시작과 동시에 데이터 조회 (최초 조회 0~10까지만)
      this.$http.get("/getScorllPage/"+this.limit)
      .then((result)=>{
-       console.log(result.data.length)
          this.rowData=result.data;
-                console.log(this.rowData.length)
      })
   },
     components: {
