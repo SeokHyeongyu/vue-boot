@@ -6,7 +6,9 @@
 
 	<select id="getData"  parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
+	 SET @ROWNUM:=0;
 	 SELECT 
+	 	@ROWNUM:=@ROWNUM+1 AS ROWNUM,
 	 	A.CDNM,
 	 	A.OBJTTY,
 	 	A.OBJYKEY,
@@ -59,6 +61,14 @@
 	 	 OR  A.NAME LIKE CONCAT('%',#{keyWord}, '%')
 	  </if>
 	
+	</select>
+	
+	<select id="getScorllPage"  parameterType="int" resultType="hashmap">
+		<![CDATA[
+			SELECT *
+ 				FROM TB_FD_JOB_MST
+ 			LIMIT #{limit},10
+		]]>
 	</select>
 
 
