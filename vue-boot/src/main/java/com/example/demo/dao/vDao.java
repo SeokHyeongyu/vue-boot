@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
 
 //@Component
 @Mapper
 public interface vDao {
 	
-	List getData(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> getData(Map<String, Object> map) throws Exception;
+
+	List<Map<String, Object>> getScorllPage(int limit)throws Exception;
 
 }
