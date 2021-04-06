@@ -7,8 +7,11 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <b-nav-item> <router-link to="/"> home</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/colorMgmt"> colorMgmt</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/scrollPage"> scrollPage</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/addressApi"> addressApi</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/todoList"> todoList</router-link></b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
