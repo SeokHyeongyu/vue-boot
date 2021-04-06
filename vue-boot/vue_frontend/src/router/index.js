@@ -4,6 +4,8 @@ import Home from "../views/Home";
 import About from "../views/About";
 import colorMgmt from "../views/test/colorMgmt";
 import scrollPage from "../views/test/scrollPage";
+import addressApi from "../views/test/addressApi";
+import todoList from "../views/test/todoList";
 
 Vue.use(VueRouter);
 
@@ -24,6 +26,14 @@ const router = new VueRouter({
     {
       path: "/scrollPage",
       component: scrollPage
+    },
+    {
+      path: "/addressApi",
+      component: addressApi
+    },
+    {
+      path: "/todoList",
+      component: todoList
     },
   ]
 });
