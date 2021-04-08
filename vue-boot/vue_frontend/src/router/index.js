@@ -6,6 +6,7 @@ import colorMgmt from "../views/test/colorMgmt";
 import scrollPage from "../views/test/scrollPage";
 import addressApi from "../views/test/addressApi";
 import todoList from "../views/test/todoList";
+import importApi from "../views/test/importApi";
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,10 @@ const router = new VueRouter({
     {
       path: "/todoList",
       component: todoList
+    },
+    {
+      path: "/importApi",
+      component: importApi
     },
   ]
 });
