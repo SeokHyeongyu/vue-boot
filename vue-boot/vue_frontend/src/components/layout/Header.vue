@@ -7,11 +7,12 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item> <router-link to="/"> home</router-link></b-nav-item>
-          <b-nav-item> <router-link to="/colorMgmt"> colorMgmt</router-link></b-nav-item>
-          <b-nav-item> <router-link to="/scrollPage"> scrollPage</router-link></b-nav-item>
-          <b-nav-item> <router-link to="/addressApi"> addressApi</router-link></b-nav-item>
-          <b-nav-item> <router-link to="/todoList"> todoList</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/" style="color: white;"> home</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/colorMgmt" style="color: white;">colorMgmt</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/scrollPage" style="color: white;">scrollPage</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/addressApi" style="color: white;">addressApi</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/todoList" style="color: white;" >todoList</router-link></b-nav-item>
+          <b-nav-item> <router-link to="/importApi" style="color: white;">importApi</router-link></b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
