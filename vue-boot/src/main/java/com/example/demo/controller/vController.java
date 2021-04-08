@@ -34,4 +34,12 @@ public class vController {
 		return vdao.getScorllPage(limit);
 		
 	}
+	
+	//결제
+	@ResponseBody
+	@RequestMapping(value="/getPaymentData")
+	public int getPaymentData(@RequestParam Map<String, Object> map) throws Exception {
+		System.out.println(map.toString());
+		return 1;
+	}
 }
